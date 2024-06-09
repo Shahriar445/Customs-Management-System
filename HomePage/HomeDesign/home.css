@@ -1,0 +1,200 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure header is on top of other elements */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1em;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 1em;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.auth-buttons button {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.auth-buttons button:hover {
+    background-color: #777;
+}
+
+main {
+    padding-top: 100px; /* Ensure content starts below fixed header */
+    padding-bottom: 50px; /* Ensure enough space for footer */
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    background-color: white;
+    padding: 2em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form h3 {
+    margin-top: 0;
+}
+
+form label {
+    display: block;
+    margin-top: 1em;
+}
+
+form input, form select, form button {
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 1em;
+}
+
+form button:hover {
+    background-color: #555;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.form-hidden {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 0.5em 0;
+    }
+
+    .auth-buttons {
+        margin-top: 1em;
+    }
+
+    .auth-buttons button {
+        margin-left: 0;
+        margin-top: 1em;
+    }
+
+    main {
+        padding-top: 80px;
+        padding-bottom: 30px;
+    }
+
+    form {
+        width: 90%;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 0.5em 0;
+    }
+
+    .auth-buttons {
+        margin-top: 1em;
+    }
+
+    .auth-buttons button {
+        margin-left: 0;
+        margin-top: 1em;
+    }
+
+    main {
+        padding: 0.5em;
+    }
+
+    form {
+        width: 90%;
+    }}
