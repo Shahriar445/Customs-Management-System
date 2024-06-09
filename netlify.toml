@@ -1,1 +1,4 @@
-from="/*" to="\\HomePage\\Home.html" status=200
+[[redirects]]
+from="/*"
+to="/Home.html"
+status=200
