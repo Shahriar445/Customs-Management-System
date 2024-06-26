@@ -3,9 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payments</title>
+    <title>Exporter Payments</title>
+    <link rel="stylesheet" href="DesignExporter/exporter_payment_style.css">
 </head>
 <body>
-    <h1>Payments</h1>
+    <header>
+        <h1>Exporter Dashboard</h1>
+    </header>
+
+    <main>
+        <section id="payment">
+            <div class="summary">
+                <h2>New Payment</h2>
+                <form id="payment-form">
+                    <label for="payment-amount">Amount:</label>
+                    <input type="number" id="payment-amount" name="payment-amount" required>
+
+                    <label for="payment-method">Payment Method:</label>
+                    <select id="payment-method" name="payment-method" required>
+                        <option value="credit_card">Credit Card</option>
+                        <option value="bank_transfer">Bank Transfer</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="bkash">bKash</option>
+                    </select>
+
+                    <label for="payment-reference">Reference:</label>
+                    <input type="text" id="payment-reference" name="payment-reference" required>
+
+                    <button type="submit">Submit Payment</button>
+                </form>
+                <button id="bkash-button" style="display: none;">Pay with bKash</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Exporter Dashboard</p>
+    </footer>
+
+    <!-- Include bKash SDK here -->
+    <!-- <script src="path/to/bkash-sdk.js"></script> -->
+    <script src="Exporter_Script/exporter_payment.js"></script>
 </body>
 </html>
