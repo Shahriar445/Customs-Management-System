@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to fetch reports data from the backend API
     function fetchReportsData() {
-        // Replace with your actual API endpoint URL for reports
-        const apiUrl = 'https://your-backend-api.com/exporter/reports';
+        // API endpoint URL for reports
+        const apiUrl = '';
 
         // Make a GET request to fetch data
         fetch(apiUrl)
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to download PDF report
     function downloadPDFReport(reportId) {
-        // Replace with your backend API endpoint for downloading PDF
+        //  backend API endpoint for downloading PDF
         const pdfUrl = `https://your-backend-api.com/exporter/reports/${reportId}/pdf`;
 
         // Use JavaScript to initiate download

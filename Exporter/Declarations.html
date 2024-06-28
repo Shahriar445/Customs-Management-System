@@ -3,30 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exporter Declarations</title>
+    <title>Exporter Declaration Form</title>
     <link rel="stylesheet" href="DesignExporter/exporter_declarations_style.css">
 </head>
 <body>
     <header>
-        <h1>Exporter Dashboard</h1>
+        <h1>Exporter Declaration to Customs</h1>
     </header>
 
     <main>
-        <section id="declaration">
-            <h2>New Export Declaration</h2>
+        <div class="declaration-form">
             <form id="declaration-form">
-                <label for="product">Product:</label>
-                <input type="text" id="product" name="product" required>
+                <fieldset>
+                    <legend>Exporter Details</legend>
+                    <div class="form-group">
+                        <label for="exporter-name">Exporter Name:</label>
+                        <input type="text" id="exporter-name" name="exporter-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exporter-address">Exporter Address:</label>
+                        <input type="text" id="exporter-address" name="exporter-address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exporter-contact">Contact Number:</label>
+                        <input type="tel" id="exporter-contact" name="exporter-contact" required>
+                    </div>
+                </fieldset>
 
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="quantity" required>
+                <fieldset>
+                    <legend>Goods Details</legend>
+                    <div class="form-group">
+                        <label for="goods-description">Description of Goods:</label>
+                        <input type="text" id="goods-description" name="goods-description" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="goods-quantity">Quantity:</label>
+                        <input type="number" id="goods-quantity" name="goods-quantity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="goods-value">Value (in USD):</label>
+                        <input type="number" id="goods-value" name="goods-value" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="country-origin">Country of Origin:</label>
+                        <input type="text" id="country-origin" name="country-origin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hs-code">HS Code:</label>
+                        <input type="text" id="hs-code" name="hs-code" required>
+                    </div>
+                </fieldset>
 
-                <label for="destination">Destination:</label>
-                <input type="text" id="destination" name="destination" required>
+                <fieldset>
+                    <legend>Shipment Details</legend>
+                    <div class="form-group">
+                        <label for="shipment-method">Shipment Method:</label>
+                        <select id="shipment-method" name="shipment-method" required>
+                            <option value="air">Air</option>
+                            <option value="sea">Sea</option>
+                            <option value="land">Land</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="departure-port">Port of Departure:</label>
+                        <input type="text" id="departure-port" name="departure-port" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="destination-port">Port of Destination:</label>
+                        <input type="text" id="destination-port" name="destination-port" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expected-departure">Expected Departure Date:</label>
+                        <input type="date" id="expected-departure" name="expected-departure" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expected-arrival">Expected Arrival Date:</label>
+                        <input type="date" id="expected-arrival" name="expected-arrival" required>
+                    </div>
+                </fieldset>
 
                 <button type="submit">Submit Declaration</button>
             </form>
-        </section>
+        </div>
     </main>
 
     <footer>

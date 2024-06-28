@@ -1,5 +1,5 @@
- /* General Styles */
- body {
+/* General Styles */
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -10,8 +10,12 @@
 header {
     background-color: #333;
     color: white;
-    padding: 1em 0;
+    padding: 0.5em 0;
     text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 header h1 {
@@ -51,7 +55,7 @@ nav ul li a:hover {
 
 /* Main Content Styles */
 main {
-    padding: 20px;
+    padding: 80px 20px 20px; /* Adjust padding to account for fixed header */
 }
 
 .summary {
@@ -66,13 +70,38 @@ main {
     margin-top: 0;
 }
 
+/* Overview Cards Styles */
+.overview-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    margin: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
 /* Footer Styles */
 footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 1em 0;
+    padding: 0.5em 0;
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index: 1000;
+    font-size: 0.9em;
 }
