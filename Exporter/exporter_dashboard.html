@@ -3,54 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Declarations</title>
-    <link rel="stylesheet" href="DesignExporter/exporter_design.css">
+    <title>Exporter Dashboard</title>
+    <link rel="stylesheet" href="DesignExporter/exporter_dashboard_style.css">
 </head>
 <body>
     <header>
-        <h1>Exporter Declarations</h1>
+        <h1>Exporter Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="Declarations.html">Declarations</a></li>
+                <li><a href="Payments.html">Payments</a></li>
+                <li><a href="Monitoring.html">Monitoring</a></li>
+                <li><a href="Report.html">Reports</a></li>
+            </ul>
+        </nav>
     </header>
+    
     <main>
-        <form class="declaration-form">
-            <fieldset>
-                <legend>Personal Information</legend>
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
+        <section id="dashboard-overview">
+            <h2>Dashboard Overview</h2>
+            <div class="overview-cards">
+                <div class="card">
+                    <h3>Total Declarations</h3>
+                    <p id="total-declarations">0</p>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                <div class="card">
+                    <h3>Pending Payments</h3>
+                    <p id="pending-payments">0</p>
                 </div>
-                <div class="form-group">
-                    <label for="phone">Phone:</label>
-                    <input type="tel" id="phone" name="phone" required>
+                <div class="card">
+                    <h3>Shipments Monitored</h3>
+                    <p id="shipments-monitored">0</p>
                 </div>
-            </fieldset>
-            <fieldset>
-                <legend>Declaration Details</legend>
-                <div class="form-group">
-                    <label for="product">Product:</label>
-                    <input type="text" id="product" name="product" required>
+                <div class="card">
+                    <h3>Reports Generated</h3>
+                    <p id="reports-generated">0</p>
                 </div>
-                <div class="form-group">
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" name="quantity" required>
-                </div>
-                <div class="form-group">
-                    <label for="value">Value:</label>
-                    <input type="number" id="value" name="value" required>
-                </div>
-                <div class="form-group">
-                    <label for="destination">Destination:</label>
-                    <input type="text" id="destination" name="destination" required>
-                </div>
-            </fieldset>
-            <button type="submit">Submit Declaration</button>
-        </form>
+            </div>
+        </section>
     </main>
+
     <footer>
         <p>&copy; 2024 Exporter Dashboard</p>
     </footer>
+
+    <script src="DesignExporter/exporter_dashboard.js"></script>
 </body>
 </html>

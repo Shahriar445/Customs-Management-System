@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 initiateBkashPayment(amount, reference);
             });
         } else {
-            // Handle other payment methods
+            // Handle other payment meth  ods
             console.log('Payment submitted:', amount, method, reference);
             alert('Payment submitted successfully!');
             document.getElementById('payment-form').reset();
