@@ -5,34 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exporter Payments</title>
     <link rel="stylesheet" href="DesignExporter/exporter_payment_style.css">
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
     <header>
-        <h1>Exporter Dashboard</h1>
+        <h1>Exporter Payment to Customes</h1>
     </header>
 
     <main>
         <section id="payment">
-            <div class="summary">
+            <div class="payment-container">
                 <h2>New Payment</h2>
                 <form id="payment-form">
-                    <label for="payment-amount">Amount:</label>
-                    <input type="number" id="payment-amount" name="payment-amount" required>
+                    <div class="form-group">
+                        <label for="shipment">Select Shipment:</label>
+                        <select id="shipment" name="shipment" required>
+                            <!-- Shipments will be populated here -->
+                        </select>
+                    </div>
 
-                    <label for="payment-method">Payment Method:</label>
-                    <select id="payment-method" name="payment-method" required>
-                        <option value="credit_card">Credit Card</option>
-                        <option value="bank_transfer">Bank Transfer</option>
-                        <option value="paypal">PayPal</option>
-                        <option value="bkash">bKash</option>
-                    </select>
+                    <div class="form-group">
+                        <label for="payment-amount">Amount:</label>
+                        <input type="number" id="payment-amount" name="payment-amount" required readonly>
+                    </div>
 
-                    <label for="payment-reference">Reference:</label>
-                    <input type="text" id="payment-reference" name="payment-reference" required>
+                    <div class="form-group">
+                        <label for="payment-method">Payment Method:</label>
+                        <select id="payment-method" name="payment-method" required>
+                            <option value="credit_card">Credit Card</option>
+                            <option value="bkash">bKash</option>
+                        </select>
+                    </div>
 
-                    <button type="submit">Submit Payment</button>
+                    <div id="card-element" class="form-group" style="display: none;">
+                        <!-- A Stripe Element will be inserted here. -->
+                    </div>
+
+                    <button type="submit" class="btn" id="submit-button">Submit Payment</button>
                 </form>
-                <button id="bkash-button" style="display: none;">Pay with bKash</button>
+                <button id="bkash-button" class="btn" style="display: none;">Pay with bKash</button>
             </div>
         </section>
     </main>
@@ -41,8 +52,8 @@
         <p>&copy; 2024 Exporter Dashboard</p>
     </footer>
 
-    <!-- Include bKash SDK here -->
-    <!-- <script src="path/to/bkash-sdk.js"></script> -->
+    <!-- Include bKash SDK -->
+    <script src="path/to/bkash-sdk.js"></script>
     <script src="Exporter_Script/exporter_payment.js"></script>
 </body>
 </html>

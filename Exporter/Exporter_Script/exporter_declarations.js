@@ -1,56 +1,43 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const showExporterFormButton = document.getElementById('showExporterForm');
-    const showCustomsOfficerFormButton = document.getElementById('showCustomsOfficerForm');
-    const exporterForm = document.getElementById('exporterForm');
-    const customsOfficerForm = document.getElementById('customsOfficerForm');
+    const declarationForm = document.getElementById('declaration-form');
 
-    showExporterFormButton.addEventListener('click', function() {
-        exporterForm.style.display = 'block';
-        customsOfficerForm.style.display = 'none';
-    });
-
-    showCustomsOfficerFormButton.addEventListener('click', function() {
-        exporterForm.style.display = 'none';
-        customsOfficerForm.style.display = 'block';
-    });
-
-    exporterForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the form from submitting the default way
+    declarationForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting
 
         // Collect form data
-        const formData = new FormData(exporterForm);
+        const formData = new FormData(declarationForm);
         const formDataObj = Object.fromEntries(formData.entries());
 
-        // Perform form validation if necessary
-        if (validateForm(formDataObj)) {
-            // Send data to the server via API
-            submitDeclaration(formDataObj, 'exporter');
-        } else {
-            alert('Please fill in all required fields correctly.');
-        }
-    });
+        // API endpoint URL
+        const apiUrl = ''; //  actual API endpoint here 
 
-    customsOfficerForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the form from submitting the default way
+        // Example: Logging form data to console (remove in production)
+        console.log('Form Data:', formDataObj);
 
-        // Collect form data
-        const formData = new FormData(customsOfficerForm);
-        const formDataObj = Object.fromEntries(formData.entries());
-
-        // Perform form validation if necessary
-        if (validateForm(formDataObj)) {
-            // Send data to the server via API
-            submitDeclaration(formDataObj, 'customsOfficer');
-        } else {
-            alert('Please fill in all required fields correctly.');
-        }
+        // Fetch POST request to API
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formDataObj),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Handle API response
+            console.log('API Response:', data);
+            alert('Declaration submitted successfully!'); // Example alert, customize as needed
+            // Optionally, reset the form after successful submission
+            declarationForm.reset();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while submitting the declaration.');
+        });
     });
 });
-
-function validateForm(data) {
-    // Add your custom validation logic here if needed
-    return true;
-}
-
-function submitDeclaration(data, role) {
-    // Replace
