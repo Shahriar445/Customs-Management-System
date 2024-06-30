@@ -3,9 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Declarations</title>
+    <title>Importer Declaration Form</title>
+    <link rel="stylesheet" href="DesignImporter/importer_declaration_style.css">
 </head>
 <body>
-    <h1>Declaration</h1>
+    <header>
+        <h1>Importer Declaration to Customs</h1>
+    </header>
+
+    <main class="form-container">
+        <div class="form-section">
+            <h2>Importer to Customs Officer</h2>
+            <form id="customs-form">
+                <fieldset>
+                    <legend>Importer Details</legend>
+                    <div class="form-group">
+                        <label for="importer-name">Importer Name:</label>
+                        <input type="text" id="importer-name" name="importer-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="importer-address">Importer Address:</label>
+                        <input type="text" id="importer-address" name="importer-address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="importer-contact">Contact Number:</label>
+                        <input type="tel" id="importer-contact" name="importer-contact" required>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Products Details</legend>
+                    <div class="form-group">
+                        <label for="products-description">Description of products:</label>
+                        <input type="text" id="products-description" name="products-description" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="products-quantity">Quantity:</label>
+                        <input type="number" id="products-quantity" name="products-quantity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="products-value">Value (in USD):</label>
+                        <input type="number" id="products-value" name="products-value" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="country-origin">Country of Origin:</label>
+                        <input type="text" id="country-origin" name="country-origin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hs-code">HS Code:</label>
+                        <input type="text" id="hs-code" name="hs-code" required>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Shipment Details</legend>
+                    <div class="form-group">
+                        <label for="shipment-method">Shipment Method:</label>
+                        <select id="shipment-method" name="shipment-method" required>
+                            <option value="air">Air</option>
+                            <option value="sea">Sea</option>
+                            <option value="land">Land</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="departure-port">Port of Departure:</label>
+                        <input type="text" id="departure-port" name="departure-port" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="destination-port">Port of Destination:</label>
+                        <input type="text" id="destination-port" name="destination-port" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expected-departure">Expected Departure Date:</label>
+                        <input type="date" id="expected-departure" name="expected-departure" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expected-arrival">Expected Arrival Date:</label>
+                        <input type="date" id="expected-arrival" name="expected-arrival" required>
+                    </div>
+                </fieldset>
+
+                <button type="submit">Submit Declaration</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Importer Dashboard</p>
+    </footer>
+
+    <script src="importer_Script/importer_declaration.js"></script>
 </body>
 </html>

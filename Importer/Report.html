@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reports</title>
+    <title>Importer Reports</title>
+    <link rel="stylesheet" href="DesignImporter/importer_reports_style.css">
 </head>
 <body>
-    <h1>Report</h1>
+    <header>
+        <h1>Importer Reports</h1>
+    </header>
+
+    <main>
+        <div class="reports-section">
+            <h2>View and Download Reports</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Report ID</th>
+                        <th>Report Name</th>
+                        <th>Date Generated</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="report-data">
+                    <!-- Data will be populated here from the API -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Importer Dashboard</p>
+    </footer>
+
+    <script src="Importer_Script/importer_reports.js"></script>
 </body>
 </html>

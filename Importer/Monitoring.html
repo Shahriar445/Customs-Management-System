@@ -3,9 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitoring</title>
+    <title>Importer Monitoring</title>
+    <link rel="stylesheet" href="DesignImporter/importer_monitoring_style.css">
 </head>
 <body>
-    <h1>Monitoring</h1>
+    <header>
+        <h1>Importer Monitoring</h1>
+    </header>
+
+    <main>
+        <div class="monitoring-section">
+            <h2>Track Your Shipments</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Shipment ID</th>
+                        <th>Product Name</th>
+                        <th>Status</th>
+                        <th>Estimated Arrival</th>
+                        <th>Current Location</th>
+                    </tr>
+                </thead>
+                <tbody id="shipment-data">
+                    <!-- Data will be populated here from the API -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Importer Dashboard</p>
+    </footer>
+
+    <script src="Importer_Script/importer_monitoring.js"></script>
 </body>
 </html>
