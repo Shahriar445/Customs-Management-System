@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('https://api.yourbackend.com/importer/reports') // Replace with your actual API endpoint
+    fetch('https://api.yourbackend.com/importer/reports') //  actual API endpoint
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById('report-data');
@@ -26,7 +26,7 @@ function viewReport(reportId) {
 }
 
 function downloadReport(reportId) {
-    fetch(`https://api.yourbackend.com/importer/reports/${reportId}/download`, { // Replace with your actual API endpoint
+    fetch(`https://api.yourbackend.com/importer/reports/${reportId}/download`, { //  actual API endpoint
         method: 'GET',
         headers: {
             'Content-Type': 'application/pdf',
