@@ -2,22 +2,41 @@
 <html>
 <head>
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="AdminDesign/Admin_style.css">
+    <link rel="stylesheet" href="AdminDesign/Admin_dashboard.css">
 </head>
 <body>
     <header>
         <h1>Admin Dashboard</h1>
         <nav>
             <ul>
-                <li><a href="users.html">Users</a></li>
-                <li><a href="reports.html">Reports</a></li>
-                <li><a href="settings.html">Settings</a></li>
+                <li><a href="ManageUser.html">Users</a></li>
+                <li><a href="MonitorUser.html">Reports</a></li>
+                <li><a href="Settings.html">Settings</a></li>
             </ul>
         </nav>
     </header>
     
+    <main>
+        <section class="overview">
+            <div class="overview-card">
+                <h3>Total Users</h3>
+                <p>150</p>
+            </div>
+            <div class="overview-card">
+                <h3>Active Users</h3>
+                <p>120</p>
+            </div>
+            <div class="overview-card">
+                <h3>Pending Approvals</h3>
+                <p>30</p>
+            </div>
+        </section>
+    </main>
+    
     <footer>
         <p>&copy; 2024 Admin Dashboard</p>
     </footer>
+
+    <script src="Admin_Script/admin_dashboard.js"></script>
 </body>
 </html>
