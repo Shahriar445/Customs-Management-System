@@ -129,7 +129,7 @@ async function stopUserRole(userId) {
         console.error('Error stopping user role:', error);
     }
 }
-
+ 
 // Initialize page by fetching and displaying users
 fetchPendingUsers();
 fetchActiveUsers();

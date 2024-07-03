@@ -55,7 +55,9 @@ nav ul li a:hover {
 
 /* Main Content Styles */
 main {
-    padding: 80px 20px 20px; /* Adjust padding to account for fixed header */
+    padding: 120px 20px 20px; /* Adjusted padding for reduced content box size */
+    max-width: 800px;
+    margin: 0 auto; /* Center content box */
 }
 
 .summary {
@@ -83,7 +85,7 @@ main {
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 15px;
-    width: 200px;
+    width: 180px; /* Reduced width for cards */
     text-align: center;
     margin: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);

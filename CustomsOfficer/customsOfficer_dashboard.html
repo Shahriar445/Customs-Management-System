@@ -1,25 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customs Officer Dashboard</title>
     <link rel="stylesheet" href="CustomsDesign/customsDesign.css">
 </head>
 <body>
     <header>
-        <h1>Customs Officer Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="Monitoring.html">Monitoring</a></li>
-                <li><a href="Declaration.html">Declarations</a></li>
-                <li><a href="Reports.html">Reports</a></li>
-                <li><a href="Payment.html">Payments</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <h1>Customs Officer Dashboard</h1>
+            <nav>
+                <ul>
+                    <li><a href="Monitoring.html">Monitoring</a></li>
+                    <li><a href="Declaration.html">Declarations</a></li>
+                    <li><a href="Reports.html">Reports</a></li>
+                    <li><a href="Payment.html">Payments</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
+
+    <main>
+        <div class="container">
+            <section class="summary">
+                <h2>Dashboard Summary</h2>
+                <p>Summary content goes here...</p>
+            </section>
+
+            <section class="overview-cards">
+                <div class="card">
+                    <h3>Total Declarations</h3>
+                    <p>100</p>
+                </div>
+                <div class="card">
+                    <h3>Shipment Pending</h3>
+                    <p>50</p>
+                </div>
+                <div class="card">
+                    <h3>Running Shipments</h3>
+                    <p>25</p>
+                </div>
+                <!-- Add more cards as needed -->
+            </section>
+        </div>
+    </main>
 
 
     <footer>
-        <p>&copy; 2024 Customs Officer Dashboard</p>
+        <div class="container">
+            <p>&copy; 2024 Customs Officer Dashboard</p>
+        </div>
     </footer>
+<script src="Customs_Script/dashboard.js"></script>
 </body>
 </html>

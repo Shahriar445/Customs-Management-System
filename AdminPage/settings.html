@@ -3,18 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings</title>
+    <title>System Configuration</title>
+    <link rel="stylesheet" href="AdminDesign/Users_style.css">
 </head>
 <body>
-    <div class="settings">
-        <h2>Settings</h2>
-        
-        <!-- Example settings options: -->
-        <ul>
-            <li><strong>General Settings:</strong> Allows you to configure general system settings.</li>
-            <li><strong>Security Settings:</strong> Enables you to manage security-related settings.</li>
-            <li><strong>Notification Settings:</strong> Allows you to configure notification preferences.</li>
-        </ul>
-    </div>
+    <header>
+        <div class="container">
+            <h1>System Configuration</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="configuration">
+                <h2>Configuration Settings</h2>
+                <form id="config-form">
+                    <div class="form-group">
+                        <label for="site-name">Site Name:</label>
+                        <input type="text" id="site-name" name="site-name" value="Your Site Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Admin Email:</label>
+                        <input type="email" id="email" name="email" value="admin@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="timezone">Timezone:</label>
+                        <select id="timezone" name="timezone">
+                            <option value="GMT">GMT</option>
+                            <option value="EST">EST</option>
+                            <option value="CST">CST</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                    <button type="submit">Save Changes</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Admin Dashboard</p>
+        </div>
+    </footer>
+
+    <script src="Admin_Script/admin_settings.js"></script>
 </body>
 </html>
