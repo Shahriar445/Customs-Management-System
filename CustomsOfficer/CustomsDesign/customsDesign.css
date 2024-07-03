@@ -1,27 +1,38 @@
-  /* General Styles */
-  body {
-    font-family: Arial, sans-serif;
+/* Reset and General Styles */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* Header Styles */
 header {
     background-color: #333;
     color: white;
-    padding: 1em 0;
-    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 header h1 {
     margin: 0;
     font-size: 1.5em;
-}
-
-/* Navigation Styles */
-nav {
-    margin-top: 20px;
     text-align: center;
 }
 
@@ -29,6 +40,7 @@ nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    text-align: center;
 }
 
 nav ul li {
@@ -51,10 +63,10 @@ nav ul li a:hover {
 
 /* Main Content Styles */
 main {
-    padding: 20px;
+    padding-top: 80px; /* Adjusted to accommodate fixed header */
 }
 
-.monitoring {
+.summary {
     background-color: #fff;
     border-radius: 5px;
     padding: 20px;
@@ -62,8 +74,38 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.monitoring h2 {
+.summary h2 {
     margin-top: 0;
+    font-size: 1.2em;
+}
+
+.overview-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    margin: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-top: 0;
+    font-size: 1.1em;
+}
+
+.card p {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
 }
 
 /* Footer Styles */
@@ -71,8 +113,14 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 1em 0;
+    padding: 10px 0;
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index: 1000;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9em;
 }
