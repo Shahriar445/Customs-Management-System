@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Declaration</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customs Officer Declarations</title>
+    <link rel="stylesheet" href="CustomsDesign/declarationDesign.css">
 </head>
 <body>
-    <h1>Declaration</h1>
-    <!-- Your content goes here -->
+    <main>
+        <div class="container">
+            <section class="declaration-form">
+                <h2>Declaration Form</h2>
+                <form id="declarationForm">
+                    <div class="form-group">
+                        <label for="exporterName">Exporter Name</label>
+                        <input type="text" id="exporterName" name="exporterName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="destinationPort">Destination Port</label>
+                        <input type="text" id="destinationPort" name="destinationPort" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expectedDeparture">Expected Departure Date</label>
+                        <input type="date" id="expectedDeparture" name="expectedDeparture" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expectedArrival">Expected Arrival Date</label>
+                        <input type="date" id="expectedArrival" name="expectedArrival" required>
+                    </div>
+                    <button type="submit">Submit Declaration</button>
+                </form>
+            </section>
+
+            <section class="declaration-list">
+                <h2>Recent Declarations</h2>
+                <ul id="declarationList">
+                    <!-- Recent declarations will be dynamically populated -->
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Customs Officer Dashboard</p>
+        </div>
+    </footer>
+
+    <script src="Customs_Script/declarations.js"></script>
 </body>
 </html>
