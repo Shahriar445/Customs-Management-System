@@ -1,108 +1,93 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const payWithCardButton = document.getElementById('pay-with-card');
-    const payWithBkashButton = document.getElementById('pay-with-bkash');
+document.addEventListener('DOMContentLoaded', function () {
+    const userId = 1; // Replace with actual user ID
+    const declarationSelect = document.getElementById('declaration-select');
+    const totalAmount = document.getElementById('total-amount');
     const cardForm = document.getElementById('card-form');
     const bkashForm = document.getElementById('bkash-form');
-    const productSelect = document.getElementById('product-select');
-    const totalAmountSpan = document.getElementById('total-amount');
+    const cardPaymentForm = document.getElementById('card-payment-form');
+    const bkashPaymentForm = document.getElementById('bkash-payment-form');
 
-    // Fetch products from backend
-    async function fetchProducts() {
+    // Function to fetch declarations
+    async function fetchDeclarations() {
         try {
-            const response = await fetch('YOUR_BACKEND_API_ENDPOINT');
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const products = await response.json();
-            populateProductDropdown(products);
+            const response = await fetch(`https://localhost:7232/api/CMS/GetDeclarationsByUserId/${userId}`);
+            const declarations = await response.json();
+            populateDeclarations(declarations);
         } catch (error) {
-            console.error('Error fetching products:', error);
+            console.error('Error fetching declarations:', error);
         }
     }
 
-    // Populate product dropdown
-    function populateProductDropdown(products) {
-        products.forEach(product => {
+    // Function to populate declarations dropdown
+    function populateDeclarations(declarations) {
+        declarations.forEach(declaration => {
             const option = document.createElement('option');
-            option.value = product.id;
-            option.textContent = `${product.name} - $${product.amount.toFixed(2)}`;
-            productSelect.appendChild(option);
+            option.value = declaration.declarationId;
+            option.textContent = `Declaration ${declaration.declarationId} - ${new Date(declaration.declarationDate).toLocaleDateString()}`;
+            declarationSelect.appendChild(option);
         });
     }
 
-    // Update total amount when product is selected
-    productSelect.addEventListener('change', function() {
-        const selectedOption = productSelect.selectedOptions[0];
-        const selectedProductAmount = selectedOption ? parseFloat(selectedOption.textContent.split('- $')[1]) : 0;
-        totalAmountSpan.textContent = selectedProductAmount.toFixed(2);
-    });
-
-    payWithCardButton.addEventListener('click', function() {
-        cardForm.classList.add('active');
-        bkashForm.classList.remove('active');
-    });
-
-    payWithBkashButton.addEventListener('click', function() {
-        bkashForm.classList.add('active');
-        cardForm.classList.remove('active');
-    });
-
-    document.getElementById('card-payment-form').addEventListener('submit', async function(event) {
+    // Function to handle card payment
+    cardPaymentForm.addEventListener('submit', async function (event) {
         event.preventDefault();
-        const formData = new FormData(event.target);
-        const data = Object.fromEntries(formData.entries());
-        data.productId = productSelect.value;
-        data.amount = totalAmountSpan.textContent;
+        const declarationId = declarationSelect.value;
+        const amount = parseFloat(totalAmount.textContent);
+        const cardNumber = document.getElementById('card-number').value;
+        const cardExpiry = document.getElementById('card-expiry').value;
+        const cardCvc = document.getElementById('card-cvc').value;
+
+        // Validate and process payment details here...
 
         try {
-            const response = await fetch('YOUR_PAYMENT_API_ENDPOINT', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const result = await response.json();
-            alert('Payment successful!');
+            await submitPayment(userId, declarationId, null, amount, 'Card', cardNumber, cardExpiry, cardCvc);
+            alert('Payment successful');
         } catch (error) {
-            console.error('Error:', error);
-            alert('Payment failed!');
+            console.error('Error submitting payment:', error);
         }
     });
 
-    document.getElementById('bkash-payment-form').addEventListener('submit', async function(event) {
+    // Function to handle bKash payment
+    bkashPaymentForm.addEventListener('submit', async function (event) {
         event.preventDefault();
-        const formData = new FormData(event.target);
-        const data = Object.fromEntries(formData.entries());
-        data.productId = productSelect.value;
-        data.amount = totalAmountSpan.textContent;
+        const declarationId = declarationSelect.value;
+        const amount = parseFloat(totalAmount.textContent);
+        const bkashNumber = document.getElementById('bkash-number').value;
+
+        // Validate and process payment details here...
 
         try {
-            const response = await fetch('YOUR_PAYMENT_API_ENDPOINT', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const result = await response.json();
-            alert('Payment successful!');
+            await submitPayment(userId, declarationId, null, amount, 'bKash', bkashNumber);
+            alert('Payment successful');
         } catch (error) {
-            console.error('Error:', error);
-            alert('Payment failed!');
+            console.error('Error submitting payment:', error);
         }
     });
 
-    // Fetch products on page load
-    fetchProducts();
+    // Function to submit payment
+    async function submitPayment(userId, declarationId, productId, amount, paymentMethod, ...paymentDetails) {
+        const paymentData = {
+            userId,
+            declarationId,
+            productId,
+            amount,
+            paymentMethod,
+            paymentDetails
+        };
+
+        const response = await fetch('https://localhost:7232/api/CMS/SubmitPayment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(paymentData)
+        });
+
+        if (!response.ok) {
+            throw new Error('Payment submission failed');
+        }
+    }
+
+    // Fetch declarations on page load
+    fetchDeclarations();
 });
