@@ -15,21 +15,29 @@
         <div class="form-section">
             <h2>Declaration Form</h2>
             <form id="customs-form">
-                
-
                 <fieldset>
                     <legend>Products Details</legend>
                     <div class="form-group">
-                        <label for="products-description">Description of products:</label>
+                        <label for="products-description">Product Name:</label>
                         <input type="text" id="products-description" name="products-description" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="products-category">Category of products:</label>
+                        <select id="products-category" name="products-category" required onchange="updateWeightLabel()">
+                            <option value="" disabled selected>Select category</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="furniture">Furniture</option>
+                            <option value="food">Food</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="products-quantity">Quantity:</label>
                         <input type="number" id="products-quantity" name="products-quantity" required>
                     </div>
                     <div class="form-group">
-                        <label for="products-value">Value (in USD):</label>
-                        <input type="number" id="products-value" name="products-value" step="0.01" required>
+                        <label id="products-weight-label" for="products-weight">Weight (Per Piece):</label>
+                        <input type="number" id="products-weight" name="products-weight" step="0.01" required>
                     </div>
                     <div class="form-group">
                         <label for="country-origin">Country of Origin:</label>

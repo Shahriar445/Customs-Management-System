@@ -32,46 +32,19 @@
         <div class="create-report-section">
             <h2>Create Report</h2>
             <form id="create-report-form">
+                <label for="declaration-id">Select Declaration:</label>
+                <select id="declaration-id" name="declaration-id" required>
+                    <!-- Declarations will be populated here from the API -->
+                </select><br><br>
+
                 <label for="report-type">Report Type:</label>
                 <input type="text" id="report-type" name="report-type" required><br><br>
                 
                 <label for="content">Content:</label><br>
                 <textarea id="content" name="content" rows="4" cols="50" required></textarea><br><br>
 
-                <label for="declaration-date">Declaration Date:</label>
-                <input type="date" id="declaration-date" name="declaration-date" required><br><br>
-
-                <label for="product-name">Product Name:</label>
-                <input type="text" id="product-name" name="product-name" required><br><br>
-
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="quantity" required><br><br>
-
-                <label for="weight">Weight:</label>
-                <input type="number" id="weight" name="weight" required><br><br>
-
-                <label for="country">Country of Origin:</label>
-                <input type="text" id="country" name="country" required><br><br>
-
-                <label for="hscode">HS Code:</label>
-                <input type="text" id="hscode" name="hscode" required><br><br>
-
-                <label for="method-shipment">Method of Shipment:</label>
-                <input type="text" id="method-shipment" name="method-shipment" required><br><br>
-
-                <label for="port-departure">Port of Departure:</label>
-                <input type="text" id="port-departure" name="port-departure" required><br><br>
-
-                <label for="port-destination">Port of Destination:</label>
-                <input type="text" id="port-destination" name="port-destination" required><br><br>
-
-                <label for="departure-date">Departure Date:</label>
-                <input type="date" id="departure-date" name="departure-date" required><br><br>
-
-                <label for="arrival-date">Arrival Date:</label>
-                <input type="date" id="arrival-date" name="arrival-date" required><br><br>
-
                 <button type="submit">Create Report</button>
+                <button type="button" id="download-report">Download Report as PDF</button>
             </form>
         </div>
     </main>
@@ -80,6 +53,7 @@
         <p>&copy; 2024 Importer Dashboard</p>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
     <script src="importer_Script/importer_report.js"></script>
 </body>
 </html>
