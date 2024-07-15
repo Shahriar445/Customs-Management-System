@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to fetch declarations
     async function fetchDeclarations() {
         try {
-            const response = await fetch(`https://localhost:7232/api/CMS/GetDeclarationsByUserId/${userId}`);
+            const response = await fetch(`https://localhost:7232/api/CMS/GetDeclarationsByUserIdImporter/${userId}`);
             const declarations = await response.json();
             populateDeclarations(declarations);
         } catch (error) {

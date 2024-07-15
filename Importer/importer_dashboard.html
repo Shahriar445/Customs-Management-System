@@ -3,6 +3,7 @@
 <head>
     <title>Importer Dashboard</title>
     <link rel="stylesheet" href="DesignImporter/ImporterDesign.css">
+    <script src="importer_Script/importer_dashboard.js" defer></script>
 </head>
 <body>
     <header>
@@ -16,6 +17,30 @@
             </ul>
         </nav>
     </header>
+
+    <main>
+        <section id="dashboard-overview">
+            <h2>Dashboard Overview</h2>
+            <div class="overview-cards">
+                <div class="card">  
+                    <h3>Total Declarations</h3>
+                    <p id="total-declarations">Loading...</p>
+                </div>
+                <div class="card">
+                    <h3>Pending Payments</h3>
+                    <p id="pending-payments">Loading...</p>
+                </div>
+                <div class="card">
+                    <h3>Shipments Monitored</h3>
+                    <p id="shipments-monitored">Loading...</p>
+                </div>
+                <div class="card">
+                    <h3>Reports Generated</h3>
+                    <p id="reports-generated">Loading...</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <p>&copy; 2024 Importer Dashboard</p>

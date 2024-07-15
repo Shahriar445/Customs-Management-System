@@ -1,5 +1,5 @@
- /* General Styles */
- body {
+/* General Styles */
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -10,8 +10,12 @@
 header {
     background-color: #333;
     color: white;
-    padding: 1em 0;
+    padding: 0.5em 0;
     text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 header h1 {
@@ -51,10 +55,12 @@ nav ul li a:hover {
 
 /* Main Content Styles */
 main {
-    padding: 20px;
+    padding: 120px 20px 20px; /* Adjusted padding for reduced content box size */
+    max-width: 800px;
+    margin: 0 auto; /* Center content box */
 }
 
-.inventory {
+.summary {
     background-color: #fff;
     border-radius: 5px;
     padding: 20px;
@@ -62,7 +68,30 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.inventory h2 {
+.summary h2 {
+    margin-top: 0;
+}
+
+/* Overview Cards Styles */
+.overview-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: 180px; /* Reduced width for cards */
+    text-align: center;
+    margin: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
     margin-top: 0;
 }
 
@@ -71,8 +100,10 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 1em 0;
+    padding: 0.5em 0;
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index: 1000;
+    font-size: 0.9em;
 }

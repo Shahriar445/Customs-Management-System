@@ -32,10 +32,14 @@
         <div class="create-report-section">
             <h2>Create Report</h2>
             <form id="create-report-form">
-                <label for="declaration-id">Select Declaration:</label>
-                <select id="declaration-id" name="declaration-id" required>
-                    <!-- Declarations will be populated here from the API -->
-                </select><br><br>
+                <div class="product-selection">
+                    <h2>Select Declaration</h2>
+                    <select id="declaration-select">
+                        <option value="" disabled selected>Select your declaration</option>
+                    </select>
+                </div>
+                
+                <br><br>
 
                 <label for="report-type">Report Type:</label>
                 <input type="text" id="report-type" name="report-type" required><br><br>

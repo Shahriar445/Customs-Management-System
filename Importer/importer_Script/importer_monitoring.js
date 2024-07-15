@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('https://localhost:7232/api/CMS/GetMonitorings')
+    fetch('https://localhost:7232/api/CMS/GetMonitoringImporter')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);

@@ -1,26 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const userId = 1; // Replace with actual user ID
     fetchDeclarations();
     document.getElementById('create-report-form').addEventListener('submit', createReport);
     document.getElementById('download-report').addEventListener('click', downloadReportAsPDF);
 });
-
-async function fetchDeclarations() {
+ // Function to fetch declarations
+ async function fetchDeclarations() {
     try {
-        const response = await fetch('https://localhost:7232/api/CMS/GetDeclarations'); // Adjust the endpoint as necessary
+        const response = await fetch(`https://localhost:7232/api/CMS/GetDeclarationsByUserIdImporter/${userId}`);
         const declarations = await response.json();
-
-        const declarationSelect = document.getElementById('declaration-id');
-        declarations.forEach(declaration => {
-            const option = document.createElement('option');
-            option.value = declaration.declarationId;
-            option.textContent = `Declaration ID: ${declaration.declarationId} - ${declaration.declarationDate}`;
-            declarationSelect.appendChild(option);
-        });
+        populateDeclarations(declarations);
     } catch (error) {
         console.error('Error fetching declarations:', error);
     }
 }
 
+// Function to populate declarations dropdown
+function populateDeclarations(declarations) {
+    declarations.forEach(declaration => {
+        const option = document.createElement('option');
+        option.value = declaration.declarationId;
+        option.textContent = `Declaration ${declaration.declarationId} - ${new Date(declaration.declarationDate).toLocaleDateString()}`;
+        declarationSelect.appendChild(option);
+    });
+}
 async function createReport(event) {
     event.preventDefault();
 
