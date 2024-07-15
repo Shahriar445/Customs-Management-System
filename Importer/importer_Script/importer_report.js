@@ -1,74 +1,62 @@
 document.addEventListener('DOMContentLoaded', function() {
     const userId = 1; // Replace with actual user ID
-    fetchDeclarations();
-    document.getElementById('create-report-form').addEventListener('submit', createReport);
-    document.getElementById('download-report').addEventListener('click', downloadReportAsPDF);
-});
- // Function to fetch declarations
- async function fetchDeclarations() {
-    try {
-        const response = await fetch(`https://localhost:7232/api/CMS/GetDeclarationsByUserIdImporter/${userId}`);
-        const declarations = await response.json();
-        populateDeclarations(declarations);
-    } catch (error) {
-        console.error('Error fetching declarations:', error);
-    }
-}
+    fetchDeclarations(userId); // Fetch declarations on page load
 
-// Function to populate declarations dropdown
-function populateDeclarations(declarations) {
-    declarations.forEach(declaration => {
-        const option = document.createElement('option');
-        option.value = declaration.declarationId;
-        option.textContent = `Declaration ${declaration.declarationId} - ${new Date(declaration.declarationDate).toLocaleDateString()}`;
-        declarationSelect.appendChild(option);
-    });
-}
-async function createReport(event) {
-    event.preventDefault();
+    const declarationSelect = document.getElementById('declaration-select');
+    const reportTypeInput = document.getElementById('report-type');
+    const contentTextarea = document.getElementById('content');
+    const dateGeneratedInput = document.getElementById('date-generated'); // Assuming you have a date input field
 
-    const formData = new FormData(this);
-    const data = {
-        declarationId: formData.get('declaration-id'),
-        reportType: formData.get('report-type'),
-        content: formData.get('content'),
-        dateGenerated: new Date().toISOString()
-    };
-
-    try {
-        const response = await fetch('https://localhost:7232/CreateReport', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-
-        if (!response.ok) {
-            const errorMessage = await response.json();
-            throw new Error(errorMessage);
+    // Event listener for declaration selection change
+    declarationSelect.addEventListener('change', function() {
+        const selectedDeclarationId = declarationSelect.value;
+        if (!selectedDeclarationId) {
+            // Reset form fields if no declaration selected
+            resetFormFields();
+            return;
         }
 
-        alert('Report created successfully!');
-        this.reset(); // Clear the form inputs
-    } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred while creating the report.');
+        // Fetch declaration details based on selectedDeclarationId
+        fetchDeclarationDetails(selectedDeclarationId);
+    });
+
+    async function fetchDeclarations(userId) {
+        try {
+            const response = await fetch(`https://localhost:7232/api/CMS/GetDeclarationsByUserIdImporter/${userId}`);
+            const declarations = await response.json();
+            populateDeclarations(declarations);
+        } catch (error) {
+            console.error('Error fetching declarations:', error);
+        }
     }
-}
 
-function downloadReportAsPDF() {
-    const reportType = document.getElementById('report-type').value;
-    const content = document.getElementById('content').value;
-    const dateGenerated = new Date().toLocaleDateString();
+    function populateDeclarations(declarations) {
+        declarations.forEach(declaration => {
+            const option = document.createElement('option');
+            option.value = declaration.declarationId;
+            option.textContent = `Declaration ${declaration.declarationId} - ${new Date(declaration.declarationDate).toLocaleDateString()}`;
+            declarationSelect.appendChild(option);
+        });
+    }
 
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    async function fetchDeclarationDetails(declarationId) {
+        try {
+            const response = await fetch(`https://localhost:7232/api/CMS/GetDeclarationDetails/${declarationId}`);
+            const declarationDetails = await response.json();
+            
+            // Update form fields with declaration details
+            reportTypeInput.value = declarationDetails.reportType;
+            contentTextarea.value = declarationDetails.content;
+            dateGeneratedInput.value = new Date(declarationDetails.dateGenerated).toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+            
+        } catch (error) {
+            console.error('Error fetching declaration details:', error);
+        }
+    }
 
-    doc.text(`Report Type: ${reportType}`, 10, 10);
-    doc.text(`Date Generated: ${dateGenerated}`, 10, 20);
-    doc.text('Content:', 10, 30);
-    doc.text(content, 10, 40);
-
-    doc.save('report.pdf');
-}
+    function resetFormFields() {
+        reportTypeInput.value = '';
+        contentTextarea.value = '';
+        dateGeneratedInput.value = ''; // Reset date input
+    }
+});
