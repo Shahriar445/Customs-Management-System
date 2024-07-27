@@ -25,7 +25,7 @@ document.getElementById('customs-form').addEventListener('submit', async functio
     };
 
     try {
-        const response = await fetch('https://localhost:7232/CreateDeclaration', {
+        const response = await fetch('https://localhost:7232/CreateDeclarationImporter', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

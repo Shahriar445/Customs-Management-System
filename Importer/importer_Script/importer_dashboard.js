@@ -3,7 +3,7 @@
 // Function to fetch dashboard overview data
 async function fetchDashboardOverview() {
     try {
-        const response = await fetch('https://localhost:7232/api/CMS/dashboard-overview');
+        const response = await fetch('https://localhost:7232/api/CMS/dashboardOverview');
         if (!response.ok) {
             throw new Error('Failed to fetch dashboard overview');
         }
