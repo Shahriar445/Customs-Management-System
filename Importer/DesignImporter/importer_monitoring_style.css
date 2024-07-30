@@ -19,13 +19,13 @@ header {
 
 header h1 {
     margin: 0;
-    font-size: 1.5em;
+    font-size: 1.8em; /* Slightly larger font for better readability */
 }
 
 /* Main Content Styles */
 main {
-    width: 100%; /* Ensure main content stretches across the page */
-    margin: 20px 0; /* Adjust margin as needed */
+    width: 90%; /* Ensure main content stretches across the page */
+    margin: 20px auto; /* Center main content */
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -49,18 +49,73 @@ table {
 }
 
 table th, table td {
-    padding: 10px; /* Reduced padding for a more compact look */
+    padding: 12px; /* Adjusted padding for a balanced look */
     text-align: left;
 }
 
 table th {
     background-color: #333;
     color: white;
-    padding: 12px; /* Larger padding for header cells */
+}
+
+table td {
+    background-color: #f9f9f9; /* Subtle background for table cells */
+    color: #333; /* Darker text for better contrast */
 }
 
 table tbody tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+table tbody tr:hover {
+    background-color: #e0e0e0; /* Highlight row on hover for better user interaction */
+}
+
+/* Specific cell styles */
+.shipment-id {
+    font-weight: bold;
+}
+
+.declaration-id {
+    color: #4CAF50;
+}
+
+.method-of-shipment {
+    color: #2196F3;
+}
+
+.port-of-departure,
+.port-of-destination {
+    font-style: italic;
+}
+
+.departure-date,
+.arrival-date {
+    color: #FF9800;
+}
+
+.status {
+    color: #FF5722;
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+.quantity {
+    color: #3F51B5;
+}
+
+.weight {
+    color: #E91E63;
+}
+
+.country-of-origin {
+    font-style: italic;
+}
+
+.hs-code {
+    color: #009688;
 }
 
 /* Footer Styles */
