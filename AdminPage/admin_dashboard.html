@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="AdminDesign/Admin_dashboard.css">
 </head>
@@ -19,16 +21,25 @@
     <main>
         <section class="overview">
             <div class="overview-card">
-                <h3>Total Users</h3>
-                <p>150</p>
+                <h3>Total Exporters</h3>
+                <p id="total-exporters">0</p>
+            </div>
+            <div class="overview-card">
+                <h3>Total Importers</h3>
+                <p id="total-importers">0</p>
+            </div>
+            <div class="overview-card">
+                <h3>Total Customs Officers</h3>
+                <p id="total-customs-officers">0</p>
+            </div>
+            <!-- Additional sections for Pending Approvals and Active Users -->
+            <div class="overview-card">
+                <h3>Pending Approvals</h3>
+                <p id="pending-approvals">0</p>
             </div>
             <div class="overview-card">
                 <h3>Active Users</h3>
-                <p>120</p>
-            </div>
-            <div class="overview-card">
-                <h3>Pending Approvals</h3>
-                <p>30</p>
+                <p id="active-users">0</p>
             </div>
         </section>
     </main>

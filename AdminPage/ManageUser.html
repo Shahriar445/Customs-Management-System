@@ -15,18 +15,42 @@
 
     <main>
         <div class="container">
+            <!-- Message container for displaying success/error messages -->
+            <div id="message" class="message"></div>
+
             <section class="pending-users">
                 <h2>Pending User Registrations</h2>
-                <div class="user-list pending-list">
-                    <!-- Pending user list will be dynamically populated -->
-                </div>
+                <table id="pending-users-table">
+                    <thead>
+                        <tr>
+                            
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Pending user list will be dynamically populated -->
+                    </tbody>
+                </table>
             </section>
 
             <section class="active-users">
                 <h2>Active Users</h2>
-                <div class="user-list active-list">
-                    <!-- Active user list will be dynamically populated -->
-                </div>
+                <table id="active-users-table">
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Active user list will be dynamically populated -->
+                    </tbody>
+                </table>
             </section>
         </div>
     </main>

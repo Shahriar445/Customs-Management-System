@@ -6,3 +6,12 @@
 
 /// report show in report .
 next task fixed create report 
+
+-- 2/8/2024
+1. adding admin permition to user is approved 
+2. add db new colum to user table 
+
+querry -+>>   ALTER TABLE [CMS].[dbo].[Users]
+            ADD isActive BIT NOT NULL DEFAULT 0;
+
+            

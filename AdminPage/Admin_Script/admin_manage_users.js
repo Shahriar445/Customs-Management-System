@@ -1,135 +1,160 @@
+document.addEventListener('DOMContentLoaded', function() {
+    fetchPendingUsers();
+    fetchActiveUsers();
+});
+
 // Function to fetch pending users from the backend API
 async function fetchPendingUsers() {
     try {
-        const response = await fetch('http://your-backend-api-url/pending-users');
+        const response = await fetch('https://localhost:7232/api/CMS/pending');
         if (!response.ok) {
             throw new Error('Failed to fetch pending users');
         }
         const pendingUsers = await response.json();
         displayPendingUsers(pendingUsers);
     } catch (error) {
-        console.error('Error fetching pending users:', error);
+        showMessage(`Error fetching pending users: ${error.message}`, 'error');
     }
 }
 
 // Function to fetch active users from the backend API
 async function fetchActiveUsers() {
     try {
-        const response = await fetch('http://your-backend-api-url/active-users');
+        const response = await fetch('https://localhost:7232/api/CMS/active');
         if (!response.ok) {
             throw new Error('Failed to fetch active users');
         }
         const activeUsers = await response.json();
         displayActiveUsers(activeUsers);
     } catch (error) {
-        console.error('Error fetching active users:', error);
+        showMessage(`Error fetching active users: ${error.message}`, 'error');
     }
 }
 
-// Function to display pending users in the UI
+// Function to display pending users in the table
 function displayPendingUsers(users) {
-    const pendingList = document.querySelector('.pending-list');
-    pendingList.innerHTML = ''; // Clear previous content
+    const pendingTableBody = document.querySelector('#pending-users-table tbody');
+    pendingTableBody.innerHTML = ''; // Clear previous content
 
     users.forEach(user => {
-        const userElement = document.createElement('div');
-        userElement.classList.add('user-item');
-        userElement.innerHTML = `
-            <p>${user.username}</p>
-            <button class="approve-btn" data-user-id="${user.id}">Approve</button>
-            <button class="reject-btn" data-user-id="${user.id}">Reject</button>
+        const userRow = document.createElement('tr');
+        userRow.innerHTML = `
+            <td>${user.userName}</td>
+            <td>${user.email}</td>
+            <td>${user.role}</td>
+            <td>
+                <button class="approve-btn" data-user-id="${user.userId}">Approve</button>
+            </td>
         `;
-        pendingList.appendChild(userElement);
+        pendingTableBody.appendChild(userRow);
 
-        // Add event listeners for approve and reject buttons
-        const approveBtn = userElement.querySelector('.approve-btn');
-        approveBtn.addEventListener('click', () => approveUser(user.id));
-
-        const rejectBtn = userElement.querySelector('.reject-btn');
-        rejectBtn.addEventListener('click', () => rejectUser(user.id));
+        // Add event listener for approve button
+        userRow.querySelector('.approve-btn').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default button action
+            approveUser(user.userId);
+        });
     });
 }
 
-// Function to display active users in the UI
+// Function to display active users in the table
 function displayActiveUsers(users) {
-    const activeList = document.querySelector('.active-list');
-    activeList.innerHTML = ''; // Clear previous content
+    const activeTableBody = document.querySelector('#active-users-table tbody');
+    activeTableBody.innerHTML = ''; // Clear previous content
 
     users.forEach(user => {
-        const userElement = document.createElement('div');
-        userElement.classList.add('user-item');
-        userElement.innerHTML = `
-            <p>${user.username}</p>
-            <button class="stop-role-btn" data-user-id="${user.id}">Stop Role</button>
+        const userRow = document.createElement('tr');
+        userRow.innerHTML = `
+            <td>${user.userName}</td>
+            <td>${user.email}</td>
+            <td>${user.role}</td>
+            <td>
+                <button class="stop-role-btn" data-user-id="${user.userId}">Stop Role</button>
+            </td>
         `;
-        activeList.appendChild(userElement);
+        activeTableBody.appendChild(userRow);
 
         // Add event listener for stop role button
-        const stopRoleBtn = userElement.querySelector('.stop-role-btn');
-        stopRoleBtn.addEventListener('click', () => stopUserRole(user.id));
+        userRow.querySelector('.stop-role-btn').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default button action
+            stopUserRole(user.userId);
+        });
     });
 }
 
 // Function to approve a user
 async function approveUser(userId) {
     try {
-        const response = await fetch(`http://your-backend-api-url/approve-user/${userId}`, {
-            method: 'PUT', // Assuming your API uses PUT for update
+        const url = `https://localhost:7232/api/CMS/approve-user/${userId}`;
+        console.log(`Approving user with URL: ${url}`);
+        
+        const response = await fetch(url, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ status: 'approved' })
+            body: JSON.stringify({ isActive: true })
         });
+
         if (!response.ok) {
-            throw new Error('Failed to approve user');
+            const errorText = await response.text(); // Get error details from the response
+            throw new Error(`Failed to approve user: ${response.status} ${errorText}`);
         }
-        // Reload pending users after approval
-        fetchPendingUsers();
+
+        showMessage('User approved successfully', 'success');
+        // Reload both pending users and active users after approval
+        fetchPendingUsers(); // Fetch pending users to update the list
+        fetchActiveUsers(); // Fetch active users to update the list
     } catch (error) {
-        console.error('Error approving user:', error);
+        showMessage(`Error approving user: ${error.message}`, 'error');
     }
 }
 
-// Function to reject a user
-async function rejectUser(userId) {
-    try {
-        const response = await fetch(`http://your-backend-api-url/reject-user/${userId}`, {
-            method: 'PUT', // Assuming your API uses PUT for update
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ status: 'rejected' })
-        });
-        if (!response.ok) {
-            throw new Error('Failed to reject user');
-        }
-        // Reload pending users after rejection
-        fetchPendingUsers();
-    } catch (error) {
-        console.error('Error rejecting user:', error);
-    }
-}
-
-// Function to stop user's role
+// Function to stop a user's role
 async function stopUserRole(userId) {
     try {
-        const response = await fetch(`http://your-backend-api-url/stop-role/${userId}`, {
-            method: 'PUT', // Assuming your API uses PUT for update
+        const url = `https://localhost:7232/api/CMS/stop-role/${userId}`;
+        console.log(`Stopping role for user with URL: ${url}`);
+        
+        const response = await fetch(url, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ role: 'inactive' })
+            body: JSON.stringify({ isActive: false }) // Set `isActive` to false to stop the role
         });
+
         if (!response.ok) {
-            throw new Error('Failed to stop user role');
+            const errorText = await response.text(); // Get error details from the response
+            throw new Error(`Failed to stop user role: ${response.status} ${errorText}`);
         }
-        // Reload active users after stopping role
-        fetchActiveUsers();
+
+        showMessage('User role stopped successfully', 'success');
+        // Reload both pending users and active users after stopping role
+        fetchPendingUsers(); // Fetch pending users to update the list
+        fetchActiveUsers(); // Fetch active users to update the list
     } catch (error) {
-        console.error('Error stopping user role:', error);
+        showMessage(`Error stopping user role: ${error.message}`, 'error');
     }
 }
- 
-// Initialize page by fetching and displaying users
-fetchPendingUsers();
-fetchActiveUsers();
+// Function to show messages in the UI
+function showMessage(message, type) {
+    const messageContainer = document.querySelector('#message');
+    messageContainer.textContent = message;
+    messageContainer.className = `message ${type}`; // Add a class based on the type (success/error)
+    
+    // Remove previous hide class if exists
+    messageContainer.classList.remove('hide');
+    
+    // Add hide class after 2 seconds
+    setTimeout(() => {
+        messageContainer.classList.add('hide');
+    }, 2000); // Duration to show the message
+    
+    // Reset the message container after transition ends
+    messageContainer.addEventListener('transitionend', () => {
+        if (messageContainer.classList.contains('hide')) {
+            messageContainer.textContent = ''; // Clear message content
+            messageContainer.className = 'message'; // Reset class
+        }
+    }, { once: true });
+}

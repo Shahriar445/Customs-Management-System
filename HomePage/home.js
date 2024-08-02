@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Function to perform login
 async function login(username, password, role) {
     try {
         const response = await fetch('https://localhost:7232/api/Auth/login', {
@@ -45,21 +44,58 @@ async function login(username, password, role) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, password, role })
+            body: JSON.stringify({ UserName: username, Password: password, Role: role })
         });
 
+        const responseBody = await response.json(); // Parse JSON response
+
+        console.log('Response from server:', responseBody); // Log the entire response
+
         if (response.ok) {
-            const data = await response.json();
-            console.log('User logged in:', username, 'Role:', data.role);
-            redirectToDashboard(data.userName, data.role);
+            // Handle successful login
+            console.log('User logged in:', responseBody.userName, 'Role:', responseBody.role);
+            redirectToDashboard(responseBody.userName, responseBody.role);
         } else {
-            alert('Login failed. Please check your credentials and role.');
+            // Handle error messages based on the response body
+            if (responseBody.message) {
+                alert(responseBody.message);
+            } else {
+                alert('An error occurred during login.');
+            }
         }
     } catch (error) {
         console.error('Error:', error);
         alert('An error occurred during login.');
     }
 }
+
+
+function redirectToDashboard(username, role) {
+    console.log('Redirecting user:', username, 'Role:', role); // Log to check values
+
+    const dashboardUrls = {
+        'admin': '../AdminPage/admin_dashboard.html',
+        'customs officer': '../CustomsOfficer/customsOfficer_dashboard.html',
+        'importer': '../Importer/importer_dashboard.html',
+        'exporter': '../Exporter/exporter_dashboard.html'
+    };
+
+    // Check if the role is defined
+    if (role) {
+        const normalizedRole = role.toLowerCase();
+
+        if (dashboardUrls.hasOwnProperty(normalizedRole)) {
+            window.location.href = dashboardUrls[normalizedRole];
+        } else {
+            console.error('Invalid role:', role);
+            alert('An error occurred: invalid role.');
+        }
+    } else {
+        console.error('Role is undefined');
+        alert('An error occurred: role is undefined.');
+    }
+}
+
 
 // Function to perform registration
 async function register(username, email, password, role) {
@@ -76,7 +112,6 @@ async function register(username, email, password, role) {
             console.log('User registered:', username, 'Role:', role);
             alert('Registration successful!'); // Show success message
             clearRegistrationForm(); // Clear the registration form fields
-           
         } else {
             alert('Registration failed. Please try again.');
         }
@@ -91,25 +126,3 @@ function clearRegistrationForm() {
     document.getElementById('register-form').reset(); // Reset the form fields
 }
 
-// Function to redirect user to appropriate dashboard page based on role
-function redirectToDashboard(username, role) {
-    // Define the URLs for different dashboard pages based on roles (replace with actual URLs)
-    const dashboardUrls = {
-        'admin': '../AdminPage/admin_dashboard.html',
-        'customs officer': '../CustomsOfficer/customsOfficer_dashboard.html',
-        'importer': '../Importer/importer_dashboard.html',
-        'exporter': '../Exporter/exporter_dashboard.html'
-    };
-
-    // Normalize role to lowercase to ensure case-insensitive comparison
-    const normalizedRole = role.toLowerCase();
-
-    // Check if the role exists in the dashboard URLs
-    if (dashboardUrls.hasOwnProperty(normalizedRole)) {
-        // Redirect user to the appropriate dashboard page based on their role
-        window.location.href = dashboardUrls[normalizedRole];
-    } else {
-        console.error('Invalid role:', role);
-        alert('An error occurred: invalid role.');
-    }
-}
