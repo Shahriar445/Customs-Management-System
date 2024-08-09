@@ -18,17 +18,20 @@
                 <div class="monitoring-data">
                     <div class="monitoring-item">
                         <h3>Shipments Processed</h3>
-                        <p>25 shipments processed today.</p>
+                        <p id="shipments-processed">Loading...</p>
+                    </div>
+                    <div class="monitoring-item">
+                        <h3>Shipments Pending</h3>
+                        <p id="shipments-pending">Loading...</p>
                     </div>
                     <div class="monitoring-item">
                         <h3>Current Status</h3>
-                        <p>Operational</p>
+                        <p id="current-status">Loading...</p>
                     </div>
                     <div class="monitoring-item">
                         <h3>Customs Clearance</h3>
-                        <p>Clearance rate: 85%</p>
+                        <p id="customs-clearance">Loading...</p>
                     </div>
-                    <!-- Add more monitoring items as needed -->
                 </div>
             </div>
         </section>
@@ -37,5 +40,7 @@
     <footer>
         <p>&copy; 2024 Exporter Dashboard</p>
     </footer>
+
+    <script src="Exporter_Script/exporter_monitoring.js"></script>
 </body>
 </html>

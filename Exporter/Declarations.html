@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Importer Declaration Form</title>
+    <title>Exporter Declaration Form</title>
     <link rel="stylesheet" href="DesignExporter/exporter_declarations_style.css">
 </head>
 <body>
     <header>
-        <h1>Exporter Declaration to Customs Officer</h1>
+        <h1>Exporter Declaration to Customs</h1>
     </header>
 
     <main class="form-container">
@@ -18,12 +18,8 @@
                 <fieldset>
                     <legend>Products Details</legend>
                     <div class="form-group">
-                        <label for="products-description">Product Name:</label>
-                        <input type="text" id="products-description" name="products-description" required>
-                    </div>
-                    <div class="form-group">
                         <label for="products-category">Category of products:</label>
-                        <select id="products-category" name="products-category" required onchange="updateWeightLabel()">
+                        <select id="products-category" name="products-category" required>
                             <option value="" disabled selected>Select category</option>
                             <option value="electronics">Electronics</option>
                             <option value="clothing">Clothing</option>
@@ -32,13 +28,19 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="products-name">Product Name:</label>
+                        <select id="products-name" name="products-name" required>
+                            <option value="" disabled selected>Select product</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="products-quantity">Quantity:</label>
                         <input type="number" id="products-quantity" name="products-quantity" required>
                     </div>
                     <div class="form-group">
-                        <label id="products-weight-label" for="products-weight">Weight (Per Piece):</label>
+                        <label id="products-weight-label" for="products-weight">Weight:</label>
                         <input type="number" id="products-weight" name="products-weight" step="0.01" required>
-                    </div>
+                    </div>                    
                     <div class="form-group">
                         <label for="country-origin">Country of Origin:</label>
                         <input type="text" id="country-origin" name="country-origin" required>
@@ -46,6 +48,14 @@
                     <div class="form-group">
                         <label for="hs-code">HS Code:</label>
                         <input type="text" id="hs-code" name="hs-code" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price">Price:</label>
+                        <input type="text" id="product-price" name="product-price" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="total-price">Total Price:</label>
+                        <input type="text" id="total-price" name="total-price" readonly>
                     </div>
                 </fieldset>
 
@@ -83,7 +93,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 Importer Dashboard</p>
+        <p>&copy; 2024 Exporter Dashboard</p>
     </footer>
 
     <script src="Exporter_Script/exporter_declarations.js"></script>

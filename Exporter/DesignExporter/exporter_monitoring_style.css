@@ -4,6 +4,10 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 /* Header Styles */
@@ -12,6 +16,9 @@ header {
     color: white;
     padding: 1em 0;
     text-align: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 header h1 {
@@ -22,42 +29,113 @@ header h1 {
 /* Main Content Styles */
 main {
     padding: 20px;
+    max-width: 1200px; /* Max width to ensure content doesn't stretch too much */
+    width: 100%;
 }
 
+/* Summary Section Styles */
 .summary {
     background-color: #fff;
-    border-radius: 5px;
+    border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s, transform 0.3s;
+    text-align: center; /* Center text inside the summary section */
+}
+
+.summary:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
 }
 
 .summary h2 {
     margin-top: 0;
+    font-size: 1.5em;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
 }
 
+/* Monitoring Data Grid */
 .monitoring-data {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    justify-content: center;
 }
 
+/* Monitoring Item Styles */
 .monitoring-item {
-    background-color: #f0f0f0;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Center text inside the monitoring item */
+}
+
+.monitoring-item:hover {
+    background-color: #f9f9f9;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: scale(1.03);
+}
+
+.monitoring-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 150, 136, 0.1), rgba(0, 150, 136, 0.3));
+    transition: opacity 0.3s;
+    opacity: 0;
+    z-index: 0;
+}
+
+.monitoring-item:hover::before {
+    opacity: 1;
 }
 
 .monitoring-item h3 {
     margin-top: 0;
-    font-size: 1.2em;
+    font-size: 1.4em;
+    color: #333;
+    position: relative;
+    z-index: 1;
 }
 
 .monitoring-item p {
     margin: 0;
-    font-size: 1em;
-    color: #666;
+    font-size: 2em;
+    font-weight: bold;
+    color: #555;
+    position: relative;
+    z-index: 1;
+}
+
+/* Specific Color Styling for Monitoring Items */
+#shipments-processed {
+    color: #4caf50; /* Green for processed shipments */
+}
+
+#shipments-pending {
+    color: #f44336; /* Red for pending shipments */
+}
+
+#current-status {
+    color: #2196f3; /* Blue for current status */
+}
+
+#customs-clearance {
+    color: #ff9800; /* Orange for customs clearance */
 }
 
 /* Footer Styles */
