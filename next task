@@ -14,4 +14,6 @@ next task fixed create report
 querry -+>>   ALTER TABLE [CMS].[dbo].[Users]
             ADD isActive BIT NOT NULL DEFAULT 0;
 
-            
+
+-- pending approval 
+-- active users 

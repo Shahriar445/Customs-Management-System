@@ -3,13 +3,26 @@ document.addEventListener('DOMContentLoaded', function() {
     fetchActiveUsers();
 });
 
+// Function to get JWT token from localStorage
+function getToken() {
+    return localStorage.getItem('token');
+}
+
 // Function to fetch pending users from the backend API
 async function fetchPendingUsers() {
+    const token = getToken();
+    
     try {
-        const response = await fetch('https://localhost:7232/api/CMS/pending');
+        const response = await fetch('https://localhost:7232/api/CMS/pending', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
         if (!response.ok) {
             throw new Error('Failed to fetch pending users');
         }
+
         const pendingUsers = await response.json();
         displayPendingUsers(pendingUsers);
     } catch (error) {
@@ -19,11 +32,19 @@ async function fetchPendingUsers() {
 
 // Function to fetch active users from the backend API
 async function fetchActiveUsers() {
+    const token = getToken();
+    
     try {
-        const response = await fetch('https://localhost:7232/api/CMS/active');
+        const response = await fetch('https://localhost:7232/api/CMS/active', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
         if (!response.ok) {
             throw new Error('Failed to fetch active users');
         }
+
         const activeUsers = await response.json();
         displayActiveUsers(activeUsers);
     } catch (error) {
@@ -83,6 +104,8 @@ function displayActiveUsers(users) {
 
 // Function to approve a user
 async function approveUser(userId) {
+    const token = getToken();
+    
     try {
         const url = `https://localhost:7232/api/CMS/approve-user/${userId}`;
         console.log(`Approving user with URL: ${url}`);
@@ -90,6 +113,7 @@ async function approveUser(userId) {
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ isActive: true })
@@ -111,6 +135,8 @@ async function approveUser(userId) {
 
 // Function to stop a user's role
 async function stopUserRole(userId) {
+    const token = getToken();
+    
     try {
         const url = `https://localhost:7232/api/CMS/stop-role/${userId}`;
         console.log(`Stopping role for user with URL: ${url}`);
@@ -118,9 +144,10 @@ async function stopUserRole(userId) {
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ isActive: false }) // Set `isActive` to false to stop the role
+            body: JSON.stringify({ isActive: false })
         });
 
         if (!response.ok) {
@@ -136,6 +163,7 @@ async function stopUserRole(userId) {
         showMessage(`Error stopping user role: ${error.message}`, 'error');
     }
 }
+
 // Function to show messages in the UI
 function showMessage(message, type) {
     const messageContainer = document.querySelector('#message');

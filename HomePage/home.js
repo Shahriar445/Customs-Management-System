@@ -52,7 +52,10 @@ async function login(username, password, role) {
         console.log('Response from server:', responseBody); // Log the entire response
 
         if (response.ok) {
-            // Handle successful login
+            // Store the JWT token in localStorage
+            localStorage.setItem('token', responseBody.token);
+
+            // Redirect to the appropriate dashboard
             console.log('User logged in:', responseBody.userName, 'Role:', responseBody.role);
             redirectToDashboard(responseBody.userName, responseBody.role);
         } else {
@@ -68,7 +71,6 @@ async function login(username, password, role) {
         alert('An error occurred during login.');
     }
 }
-
 
 function redirectToDashboard(username, role) {
     console.log('Redirecting user:', username, 'Role:', role); // Log to check values
@@ -96,8 +98,6 @@ function redirectToDashboard(username, role) {
     }
 }
 
-
-// Function to perform registration
 async function register(username, email, password, role) {
     try {
         const response = await fetch('https://localhost:7232/api/Auth/register', {
@@ -105,7 +105,12 @@ async function register(username, email, password, role) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, email, password, role })
+            body: JSON.stringify({ 
+                UserName: username, // Matches backend property
+                Email: email, // Matches backend property
+                Password: password, // Matches backend property
+                Role: role // Matches backend property
+            })
         });
 
         if (response.ok) {
@@ -113,13 +118,15 @@ async function register(username, email, password, role) {
             alert('Registration successful!'); // Show success message
             clearRegistrationForm(); // Clear the registration form fields
         } else {
-            alert('Registration failed. Please try again.');
+            const error = await response.text();
+            alert(`Registration failed: ${error}`); // Show error message from server
         }
     } catch (error) {
         console.error('Error:', error);
         alert('An error occurred during registration.');
     }
 }
+
 
 // Function to clear registration form
 function clearRegistrationForm() {
