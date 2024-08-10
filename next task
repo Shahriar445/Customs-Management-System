@@ -17,3 +17,32 @@ querry -+>>   ALTER TABLE [CMS].[dbo].[Users]
 
 -- pending approval 
 -- active users 
+
+
+project structure 
+
+by react src/
+├── assets/
+│   ├── components/
+│   │   ├── HomePage/
+│   │   │   ├── HomePage.jsx
+│   │   │   └── HomePage.css
+│   │   ├── AdminDashboard/
+│   │   │   ├── AdminDashboard.jsx
+│   │   │   ├── DashboardHeader.jsx
+│   │   │   ├── DashboardOverview.jsx
+│   │   │   ├── DashboardFooter.jsx
+│   │   │   └── ManageUsers/
+│   │   │       ├── ManageUsers.jsx
+│   │   │       └── ManageUsers.css
+│   ├── css/
+│   │   ├── home.css
+│   │   └── admin-dashboard.css
+│   └── pages/
+│   │   ├── Home.jsx
+│   │   └── AdminPage.jsx         // New AdminPage component
+│   └── services/
+│       ├── authService.js
+│       └── adminService.js
+├── App.jsx
+└── main.jsx
