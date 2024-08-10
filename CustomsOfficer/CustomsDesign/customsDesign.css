@@ -1,38 +1,35 @@
-/* Reset and General Styles */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-}
-
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Header Styles */
 header {
     background-color: #333;
     color: white;
-    padding: 10px 0;
+    padding: 0.5em 0;
+    text-align: center;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
     margin: 0;
-    font-size: 1.5em;
+    font-size: 1.4em;
+}
+
+/* Navigation Styles */
+nav {
+    margin-top: 10px;
     text-align: center;
 }
 
@@ -40,7 +37,6 @@ nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    text-align: center;
 }
 
 nav ul li {
@@ -51,61 +47,166 @@ nav ul li {
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 1.2em;
-    padding: 5px 10px;
+    font-size: 1em;
+    padding: 6px 12px;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 nav ul li a:hover {
     background-color: #555;
+    color: #ddd;
 }
 
 /* Main Content Styles */
 main {
-    padding-top: 80px; /* Adjusted to accommodate fixed header */
+    padding: 80px 20px 40px; /* Adjust padding to account for fixed header and footer */
+    flex: 1;
 }
 
-.summary {
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Section Styles */
+section {
     background-color: #fff;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-.summary h2 {
+/* Section Heading */
+section h2 {
     margin-top: 0;
-    font-size: 1.2em;
+    font-size: 1.4em;
+    color: #333;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-.overview-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+section h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #333;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+section h2:hover::after {
+    width: 80px;
+}
+
+/* Card Styles */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px; /* Adjust gap between cards */
+    justify-content: center; /* Center cards horizontally */
+    margin: 0 auto;
 }
 
 .card {
-    background-color: #f9f9f9;
+    background: #fff; /* White background for the card */
     border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    width: 200px;
+    border-radius: 8px;
+    padding: 20px;
     text-align: center;
-    margin: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 300px; /* Adjust max-width as needed */
 }
 
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Header */
 .card h3 {
-    margin-top: 0;
-    font-size: 1.1em;
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #333;
+    position: relative;
+    padding-bottom: 10px;
 }
 
+/* Different Card Header Colors */
+.card-exporter h3 {
+    color: #4CAF50; /* Green for Exporter */
+}
+
+.card-importer h3 {
+    color: #2196F3; /* Blue for Importer */
+}
+
+.card-pending h3 {
+    color: #FFC107; /* Amber for Pending Shipments */
+}
+
+.card-running h3 {
+    color: #FF5722; /* Deep Orange for Running Shipments */
+}
+
+.card h3::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #333;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.card:hover h3::after {
+    width: 60px;
+}
+
+/* Card Content */
 .card p {
-    font-size: 1.2em;
+    margin: 10px 0 0;
+    font-size: 1.5em;
     font-weight: bold;
-    color: #333;
+    color: #333; /* Default text color */
+}
+
+/* Different Text Colors */
+.card-exporter p {
+    color: #4CAF50; /* Green text for Exporter cards */
+}
+
+.card-importer p {
+    color: #2196F3; /* Blue text for Importer cards */
+}
+
+.card-pending p {
+    color: #FFC107; /* Amber text for Pending Shipments cards */
+}
+
+.card-running p {
+    color: #FF5722; /* Deep Orange text for Running Shipments cards */
+}
+
+/* Icon Styles */
+.card-icon {
+    font-size: 2.5em; /* Increase icon size */
+    margin-bottom: 10px; /* Space between icon and header */
+    color: inherit; /* Inherit color from card header */
 }
 
 /* Footer Styles */
@@ -113,14 +214,30 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 1000;
+    padding: 0.5em 0;
+    font-size: 0.8em;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+/* Icon Styles */
+.card-icon {
+    font-size: 1.5em; /* Decrease icon size */
+    margin-bottom: 10px; /* Space between icon and header */
+    color: currentColor; /* Inherit color from card header */
 }
 
-footer p {
-    margin: 0;
-    font-size: 0.9em;
+/* Ensure card-header color matches icon color */
+.card-exporter .card-icon {
+    color: #4CAF50; /* Green for Exporter */
+}
+
+.card-importer .card-icon {
+    color: #2196F3; /* Blue for Importer */
+}
+
+.card-pending .card-icon {
+    color: #FFC107; /* Amber for Pending Shipments */
+}
+
+.card-running .card-icon {
+    color: #FF5722; /* Deep Orange for Running Shipments */
 }

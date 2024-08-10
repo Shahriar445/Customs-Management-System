@@ -1,39 +1,20 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Selecting elements where data will be populated
-    const summarySection = document.querySelector('.summary');
-    const overviewCards = document.querySelector('.overview-cards');
+async function fetchSummaryData(apiUrl, role) {
+    try {
+        // Fetch data from the API
+        const response = await fetch(apiUrl);
+        const data = await response.json();
 
-    // API endpoint for fetching dashboard data
-    const apiUrl = 'https://example.com/api/dashboard';
+        // Update the HTML elements with the data
+        document.getElementById(`${role}-total-declarations`).textContent = data.totalDeclarations;
+        document.getElementById(`${role}-pending-shipments`).textContent = data.pendingShipments;
+        document.getElementById(`${role}-running-shipments`).textContent = data.runningShipments;
+    } catch (error) {
+        console.error(`Error fetching ${role} summary data:`, error);
+    }
+}
 
-    // Fetch data from the API
-    fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Update summary section
-            summarySection.innerHTML = `
-                <h2>Dashboard Summary</h2>
-                <p>Total Declarations: ${data.totalDeclarations}</p>
-                <p>Shipment Pending: ${data.shipmentPending}</p>
-                <p>Running Shipments: ${data.runningShipments}</p>
-            `;
-
-            // Update overview cards
-            data.overviewCards.forEach(card => {
-                overviewCards.innerHTML += `
-                    <div class="card">
-                        <h3>${card.title}</h3>
-                        <p>${card.value}</p>
-                    </div>
-                `;
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
+// Call the function to fetch and update data when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    fetchSummaryData('https://localhost:7232/api/CMS/exporter-summary', 'exporter');
+    fetchSummaryData('https://localhost:7232/api/CMS/importer-summary', 'importer');
 });

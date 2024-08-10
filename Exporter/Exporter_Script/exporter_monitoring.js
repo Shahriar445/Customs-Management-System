@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
     async function updateMonitoringOverview() {
         const data = await fetchMonitoringOverview();
         if (data) {
-            document.getElementById('shipments-processed').textContent = `${data.shipmentsProcessed} shipments processed today.`;
-            document.getElementById('shipments-pending').textContent = `${data.shipmentPending} shipments pending today.`;
+            document.getElementById('shipments-processed').textContent = `${data.shipmentsProcessed} shipments processed.`;
+            document.getElementById('shipments-pending').textContent = `${data.shipmentPending} shipments pending.`;
 
             document.getElementById('current-status').textContent = data.currentStatus;
             document.getElementById('customs-clearance').textContent = `Clearance rate: ${data.customsClearanceRate.toFixed(2)}%`;
