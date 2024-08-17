@@ -22,13 +22,11 @@ async function updateDashboardOverview() {
         document.getElementById('total-declarations').textContent = data.totalDeclarations;
         document.getElementById('pending-payments').textContent = data.pendingPayments;
         document.getElementById('shipments-monitored').textContent = data.shipmentMonitoring;
-        document.getElementById('reports-generated').textContent = data.generatedReports;
     } else {
         // Handle error case or display default values
         document.getElementById('total-declarations').textContent = 'N/A';
         document.getElementById('pending-payments').textContent = 'N/A';
         document.getElementById('shipments-monitored').textContent = 'N/A';
-        document.getElementById('reports-generated').textContent = 'N/A';
     }
 }
 

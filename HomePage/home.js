@@ -35,6 +35,27 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Handle unique login URL with token
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    if (token) {
+        // Store the token in localStorage
+        localStorage.setItem('token', token);
+
+        // Decode the token to get user information (optional)
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        const username = payload.sub;
+        const role = payload.role;
+        const userId = payload.userId; // Retrieve userId from payload
+
+        // Store userId in localStorage
+        localStorage.setItem('userId', userId);
+
+        // Redirect to the appropriate dashboard
+        redirectToDashboard(username, role);
+    }
 });
 
 async function login(username, password, role) {
@@ -52,12 +73,31 @@ async function login(username, password, role) {
         console.log('Response from server:', responseBody); // Log the entire response
 
         if (response.ok) {
-            // Store the JWT token in localStorage
+            // Store the JWT token and userId in localStorage
             localStorage.setItem('token', responseBody.token);
+            localStorage.setItem('userId', responseBody.userId); // Store userId
+            
+            // Determine the base URL for redirection based on role
+            let baseUrl = 'http://127.0.0.1:5501/';
 
-            // Redirect to the appropriate dashboard
-            console.log('User logged in:', responseBody.userName, 'Role:', responseBody.role);
-            redirectToDashboard(responseBody.userName, responseBody.role);
+            // Map roles to their respective paths
+            const rolePaths = {
+                'admin': 'AdminPage/admin_dashboard.html',
+                'customs officer': 'CustomsOfficer/customsOfficer_dashboard.html',
+                'importer': 'Importer/importer_dashboard.html',
+                'exporter': 'Exporter/exporter_dashboard.html'
+            };
+
+            // Get the correct path for the role
+            const path = rolePaths[role.toLowerCase()];
+
+            if (path) {
+                // Redirect to the role-specific URL with the token as a query parameter
+                window.location.href = `${baseUrl}${path}?token=${responseBody.token}`;
+            } else {
+                console.error('Invalid role:', role);
+                alert('An error occurred: invalid role.');
+            }
         } else {
             // Handle error messages based on the response body
             if (responseBody.message) {
@@ -69,32 +109,6 @@ async function login(username, password, role) {
     } catch (error) {
         console.error('Error:', error);
         alert('An error occurred during login.');
-    }
-}
-
-function redirectToDashboard(username, role) {
-    console.log('Redirecting user:', username, 'Role:', role); // Log to check values
-
-    const dashboardUrls = {
-        'admin': '../AdminPage/admin_dashboard.html',
-        'customs officer': '../CustomsOfficer/customsOfficer_dashboard.html',
-        'importer': '../Importer/importer_dashboard.html',
-        'exporter': '../Exporter/exporter_dashboard.html'
-    };
-
-    // Check if the role is defined
-    if (role) {
-        const normalizedRole = role.toLowerCase();
-
-        if (dashboardUrls.hasOwnProperty(normalizedRole)) {
-            window.location.href = dashboardUrls[normalizedRole];
-        } else {
-            console.error('Invalid role:', role);
-            alert('An error occurred: invalid role.');
-        }
-    } else {
-        console.error('Role is undefined');
-        alert('An error occurred: role is undefined.');
     }
 }
 
@@ -127,9 +141,32 @@ async function register(username, email, password, role) {
     }
 }
 
-
 // Function to clear registration form
 function clearRegistrationForm() {
     document.getElementById('register-form').reset(); // Reset the form fields
 }
 
+function redirectToDashboard(username, role) {
+    console.log('Redirecting user:', username, 'Role:', role); // Log to check values
+
+    const dashboardUrls = {
+        'admin': '../AdminPage/admin_dashboard.html',
+        'customs officer': '../CustomsOfficer/customsOfficer_dashboard.html',
+        'importer': '../Importer/importer_dashboard.html',
+        'exporter': '../Exporter/exporter_dashboard.html'
+    };
+
+    if (role) {
+        const normalizedRole = role.toLowerCase();
+
+        if (dashboardUrls.hasOwnProperty(normalizedRole)) {
+            window.location.href = dashboardUrls[normalizedRole];
+        } else {
+            console.error('Invalid role:', role);
+            alert('An error occurred: invalid role.');
+        }
+    } else {
+        console.error('Role is undefined');
+        alert('An error occurred: role is undefined.');
+    }
+}
