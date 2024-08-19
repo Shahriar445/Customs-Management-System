@@ -173,9 +173,15 @@ document.getElementById('customs-form').addEventListener('submit', async functio
 
     const formData = new FormData(this);
     const totalPriceValue = parseFloat(document.getElementById('total-price').value.replace('$', ''));
-
+    const userId = localStorage.getItem('userId');
+    // Ensure userId is retrieved successfully
+    if (!userId) {
+      console.error('User ID not found.');
+      alert('User ID is not available. Please log in again.');
+      return;
+  }
     const data = {
-        userId: 2, // Replace with the actual user ID from your authentication or session
+        userId: parseInt(userId), // Replace with the actual user ID from your authentication or session
         declarationDate: new Date().toISOString(),
         status: "Pending",
         products: [{

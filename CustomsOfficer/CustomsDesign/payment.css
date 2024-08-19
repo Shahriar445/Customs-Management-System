@@ -3,62 +3,39 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    color: #333;
 }
 
-/* Header Styles */
 header {
-    background-color: #333;
-    color: white;
-    padding: 0.5em 0;
-    text-align: center;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for better separation */
+    background-color: #007bff;
+    color: #fff;
+    padding: 20px;
 }
 
 header h1 {
     margin: 0;
-    font-size: 1.5em;
-    text-transform: uppercase; /* Example: Transform text to uppercase */
+    text-align: center;
 }
 
-/* Main Content Styles */
-main {
-    padding: 120px 20px 20px; /* Adjust padding to account for fixed header */
+footer {
+    background-color: #f4f4f4;
+    padding: 10px;
+    text-align: center;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
+/* Payment History Styles */
 .payment-history {
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
 }
 
 .payment-item {
+    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 15px;
     margin-bottom: 10px;
 }
 
-/* Footer Styles */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 0.5em 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 1000;
-    font-size: 0.9em;
+.payment-item p {
+    margin: 5px 0;
 }
