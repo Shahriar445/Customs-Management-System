@@ -1,9 +1,12 @@
-// dashboard.js
-
 // Function to fetch dashboard overview data
 async function fetchDashboardOverview() {
     try {
-        const response = await fetch('https://localhost:7232/api/CMS/dashboardOverview');
+        const userId = localStorage.getItem('userId'); // Retrieve userId from localStorage
+        if (!userId) {
+            throw new Error('User ID not found in localStorage');
+        }
+
+        const response = await fetch(`https://localhost:7232/api/CMS/dashboardOverview/${userId}`);
         if (!response.ok) {
             throw new Error('Failed to fetch dashboard overview');
         }

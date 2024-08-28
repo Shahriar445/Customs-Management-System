@@ -190,7 +190,6 @@ document.getElementById('customs-form').addEventListener('submit', async functio
             quantity: parseInt(formData.get('products-quantity')),
             weight: parseFloat(formData.get('products-weight')),
             countryOfOrigin: formData.get('country-origin'),
-            hsCode: formData.get('hs-code'),
             totalPrice: isNaN(totalPriceValue) ? 0 : totalPriceValue, // Add totalPrice
             declarationId: 0
         }],

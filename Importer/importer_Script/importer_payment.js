@@ -71,8 +71,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             const returnUrl = `${window.location.origin}${window.location.pathname}`;
             const payload = {
-                DeclarationId: parseInt(declarationId),
-                ReturnUrl: returnUrl
+                declarationId: parseInt(declarationId),
+                returnUrl: returnUrl
             };
     
             console.log('Initiating payment with payload:', payload);
@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error('Error initiating payment:', error);
         }
     }
+
     // Show error message
     function showError(message) {
         alert(`Error: ${message}`);
@@ -119,7 +120,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // Handle successful payment
-   
     function handleSuccessfulPayment() {
         const urlParams = new URLSearchParams(window.location.search);
         const transactionId = urlParams.get('transactionId');
@@ -144,5 +144,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-
+    // Call handleSuccessfulPayment function if URL contains parameters
+    handleSuccessfulPayment();
 });
