@@ -121,6 +121,54 @@ button[type="submit"]:hover {
     background-color: #555;
 }
 
+/* Table Styles */
+#declaration-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#declaration-table th,
+#declaration-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+#declaration-table th {
+    background-color: #333;
+    color: white;
+}
+
+#declaration-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#declaration-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Back to Homepage Button Styles */
+#back-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#back-button i {
+    margin-right: 5px;
+}
+
+#back-button:hover {
+    background-color: #0056b3;
+}
+
 /* Footer Styles */
 footer {
     background-color: #333;
@@ -129,4 +177,16 @@ footer {
     padding: 1em 0;
     width: 100%;
     flex-shrink: 0; /* Prevent footer from shrinking */
+    position: relative; /* Relative position for the fixed back button */
+    overflow: hidden; /* Hide any overflow from the fixed button */
+}
+
+footer p {
+    margin: 0;
+}
+
+footer #back-button {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
 }

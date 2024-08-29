@@ -39,6 +39,37 @@ main {
     margin-top: 20px;
     overflow-x: auto; /* Enable horizontal scrolling for the table */
 }
+/* Style for the footer */
+footer {
+    position: relative;
+    padding: 10px;
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+/* Back button style */
+#back-button {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: inline-flex;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#back-button i {
+    margin-right: 5px;
+}
+
+#back-button:hover {
+    background-color: #0056b3;
+}
 
 table {
     width: 100%;

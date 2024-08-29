@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Importer Dashboard</title>
     <link rel="stylesheet" href="DesignImporter/ImporterDesign.css">
     <script src="importer_Script/importer_dashboard.js" defer></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
         <h1>Importer Dashboard</h1>
         <nav>
             <ul>
-                <li><a href="Declaration.html">Declarations</a></li>
-                <li><a href="Payments.html">Payments</a></li>
-                <li><a href="Monitoring.html">Monitoring</a></li>
+                <li><a href="Declaration.html"><i class="fas fa-file-alt"></i> Declarations</a></li>
+                <li><a href="Payments.html"><i class="fas fa-credit-card"></i> Payments</a></li>
+                <li><a href="Monitoring.html"><i class="fas fa-truck"></i> Monitoring</a></li>
             </ul>
         </nav>
     </header>
@@ -21,24 +25,27 @@
         <section id="dashboard-overview">
             <h2>Dashboard Overview</h2>
             <div class="overview-cards">
-                <div class="card">  
+                <div class="card">
+                    <i class="fas fa-file-alt card-icon"></i>
                     <h3>Total Declarations</h3>
                     <p id="total-declarations">Loading...</p>
                 </div>
                 <div class="card">
+                    <i class="fas fa-credit-card card-icon"></i>
                     <h3>Pending Payments</h3>
                     <p id="pending-payments">Loading...</p>
                 </div>
                 <div class="card">
+                    <i class="fas fa-truck card-icon"></i>
                     <h3>Shipments Monitored</h3>
                     <p id="shipments-monitored">Loading...</p>
                 </div>
-               
             </div>
         </section>
     </main>
 
     <footer>
+        <button class="logout-btn" onclick="window.location.href='/HomePage/index.html'"><i class="fas fa-sign-out-alt"></i> Logout</button>
         <p>&copy; 2024 Importer Dashboard</p>
     </footer>
 </body>

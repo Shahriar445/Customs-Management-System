@@ -60,6 +60,7 @@ main {
     margin: 0 auto; /* Center content box */
 }
 
+/* Summary Styles */
 .summary {
     background-color: #fff;
     border-radius: 5px;
@@ -81,18 +82,26 @@ main {
 }
 
 .card {
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    width: 180px; /* Reduced width for cards */
+    border-radius: 10px; /* Updated border radius for a more rounded look */
+    padding: 20px; /* Increased padding for better content spacing */
+    width: 220px; /* Increased width for larger cards */
     text-align: center;
-    margin: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin: 15px; /* Increased margin for better spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Enhanced shadow for better depth effect */
+    transition: box-shadow 0.3s, transform 0.3s, background-color 0.3s; /* Added transition for smoother animations */
+}
+
+.card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Deepened shadow on hover */
+    transform: translateY(-5px); /* Lift effect on hover */
+    background-color: #e8f5e9; /* Light green background on hover */
 }
 
 .card h3 {
     margin-top: 0;
+    color: #333; /* Darker text for better contrast */
 }
 
 /* Footer Styles */
@@ -106,4 +115,41 @@ footer {
     width: 100%;
     z-index: 1000;
     font-size: 0.9em;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 0.5em 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Adjust padding to fit content */
+}
+
+/* Logout Button Styles */
+.logout-btn {
+    background-color: #ff4d4d; /* Red background color */
+    color: white; /* White text color */
+    border: none; /* Remove default border */
+    padding: 10px 15px; /* Padding */
+    font-size: 0.9em; /* Font size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s; /* Smooth color transition */
+}
+
+.logout-btn:hover {
+    background-color: #e60000; /* Darker red on hover */
+}
+
+.logout-btn i {
+    margin-right: 5px; /* Space between icon and text */
 }

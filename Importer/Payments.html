@@ -5,34 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Importer Payment</title>
     <link rel="stylesheet" href="DesignImporter/importer_payment_style.css">
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1>Importer Payment</h1>
+        <h1><i class="fas fa-dollar-sign"></i> Importer Payment</h1>
     </header>
 
     <main>
-        <div class="payment-summary">
-            <h2>Payment Summary</h2>
-            <p>Total Amount: $<span id="total-amount">0.00</span></p>
+        <div class="declaration-details">
+            <h2><i class="fas fa-file-alt"></i> Declaration Details</h2>
+            <table id="declaration-table">
+                <thead>
+                    <tr>
+                        <th>Declaration ID</th>
+                        <th>Product Name</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be populated here -->
+                </tbody>
+            </table>
         </div>
-
         <div class="product-selection">
-            <h2>Select Declaration</h2>
+            <h2><i class="fas fa-search"></i> Select Declaration</h2>
             <select id="declaration-select">
                 <option value="" disabled selected>Select your declaration</option>
             </select>
         </div>
 
         <div class="button-container">
-            <button id="pay-now" disabled>Pay Now</button>
+            <button id="pay-now" disabled><i class="fas fa-credit-card"></i> Pay Now</button>
+        </div>
+        <div id="notification" style="display: none; position: fixed; top: 20px; right: 20px; background-color: #4CAF50; color: white; padding: 15px; border-radius: 5px; z-index: 1000;">
+            <i class="fas fa-check-circle"></i> Payment successful! Redirecting...
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 Importer Dashboard</p>
+        <p>&copy; 2024 Importer Dashboard <i class="fas fa-copyright"></i></p>
+        <a id="back-button" href="#" class="back-home"><i class="fas fa-arrow-left"></i> Back</a>
     </footer>
 
     <script src="Importer_Script/importer_payment.js"></script>
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+        const token = localStorage.getItem('token');
+
+        // Update the Back button URL
+        if (token) {
+            document.getElementById('back-button').href = `http://127.0.0.1:5501/Importer/importer_dashboard.html?token=${token}`;
+        }
+    </script>
 </body>
 </html>
