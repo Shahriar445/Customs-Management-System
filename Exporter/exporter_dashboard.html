@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exporter Dashboard</title>
     <link rel="stylesheet" href="DesignExporter/exporter_dashboard_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
         <h1>Exporter Dashboard</h1>
         <nav>
             <ul>
-                <li><a href="Declarations.html">Declarations</a></li>
-                <li><a href="Payments.html">Payments</a></li>
-                <li><a href="Monitoring.html">Monitoring</a></li>
+                <li><a href="Declarations.html"><i class="fas fa-file-alt"></i> Declarations</a></li>
+                <li><a href="Payments.html"><i class="fas fa-credit-card"></i> Payments</a></li>
+                <li><a href="Monitoring.html"><i class="fas fa-chart-line"></i> Monitoring</a></li>
             </ul>
         </nav>
     </header>
@@ -23,23 +24,28 @@
             <h2>Dashboard Overview</h2>
             <div class="overview-cards">
                 <div class="card">
+                    <i class="fas fa-file-invoice"></i>
                     <h3>Total Declarations</h3>
                     <p id="total-declarations">0</p>
                 </div>
                 <div class="card">
+                    <i class="fas fa-money-bill-wave"></i>
                     <h3>Pending Payments</h3>
                     <p id="pending-payments">0</p>
                 </div>
                 <div class="card">
+                    <i class="fas fa-truck"></i>
                     <h3>Shipments Monitored</h3>
                     <p id="shipments-monitored">0</p>
                 </div>
-                
             </div>
         </section>
     </main>
 
     <footer>
+        <button class="logout-btn" onclick="window.location.href='/HomePage/index.html'">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
         <p>&copy; 2024 Exporter Dashboard</p>
     </footer>
 
